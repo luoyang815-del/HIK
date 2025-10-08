@@ -6,6 +6,7 @@
   <groupId>com.example</groupId>
   <artifactId>hik-remote-access-events-sink</artifactId>
   <version>1.0.8c</version>
+  <packaging>jar</packaging>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
@@ -35,6 +36,11 @@
       <version>2.17.2</version>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.17.2</version>
+    </dependency>
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.33</version>
@@ -53,6 +59,11 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.0</version>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
