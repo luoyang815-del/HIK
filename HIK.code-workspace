@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "../HIK"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}

@@ -1,0 +1,41 @@
+filter:
+  allowedDirections: ["ANY"]
+  includeUnknownDirection: true
+  onlySuccess: true
+
+fetch:
+  preferJson: true
+  historyApi: "AcsEvent"
+  timeoutSeconds: 60
+  streamReconnectSeconds: 5
+
+devices:
+  - name: "Gate-HTTPS"
+    host: "192.168.4.153"
+    port: 443
+    https: true
+    insecureTLS: true
+    username: "admin"
+    password: "yourpass"
+    mapping:
+      readerDirection: { "1": "IN", "2": "OUT" }
+      successMinorCodes: [0,1,75,76,9001,990611]
+
+sink:
+  http: { enabled: false }
+  jdbc:
+    enabled: true
+    driver: "com.mysql.cj.jdbc.Driver"
+    url: "jdbc:mysql://127.0.0.1:3306/acs?useSSL=false&useUnicode=true&characterEncoding=utf8"
+    username: "root"
+    password: "123456"
+    insertSql: |
+      INSERT INTO access_events (
+        event_time, device, direction, success,
+        major, minor, name, employee_no, card_no, card_type,
+        door_no, reader_no, raw_json
+      ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+debug:
+  enabled: true
+  printFirstBytes: 2048
